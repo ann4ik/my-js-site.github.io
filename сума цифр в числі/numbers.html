@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Обробка цілого числа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+            background-color: #4CAF50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background: #007BFF; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            color: #00BFFF; 
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            color: white; 
+        }
+        input[type="number"] {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+            color: white; 
+        }
+        #results p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Обробка цілого числа</h2>
+        <label for="numberInput" style="color: white;">Введіть ціле число:</label>
+        <input type="number" id="numberInput" />
+        <button onclick="processNumber()">Обробити</button>
+
+        <div id="results">
+        </div>
+    </div>
+
+    <script>
+        function processNumber() {
+            const numberInput = document.getElementById("numberInput");
+            const number = numberInput.value;
+            const resultsDiv = document.getElementById("results");
+
+            resultsDiv.innerHTML = "";
+
+            if (!number) {
+                resultsDiv.innerHTML = "Будь ласка, введіть ціле число.";
+                return;
+            }
+
+            const digits = number.split(""); 
+            const numDigits = digits.length; 
+            let sumOfDigits = 0; 
+            let evenCount = 0; 
+            let oddCount = 0; 
+
+            resultsDiv.innerHTML += `<p>Кількість цифр у числі: ${numDigits} (${numDigits === 1 ? "цифра" : numDigits >= 2 && numDigits <= 4 ? "цифри" : "цифр"})</p>`;
+            resultsDiv.innerHTML += `<p>Цифри числа: ${digits.join(" ")}</p>`;
+
+            for (const digit of digits) {
+                const digitValue = parseInt(digit);
+                sumOfDigits += digitValue;
+                if (digitValue % 2 === 0) {
+                    evenCount++;
+                } else {
+                    oddCount++;
+                }
+            }
+
+            resultsDiv.innerHTML += `<p>Сума цифр у числі: ${sumOfDigits}</p>`;
+            resultsDiv.innerHTML += `<p>Кількість парних цифр: ${evenCount}</p>`;
+            resultsDiv.innerHTML += `<p>Кількість непарних цифр: ${oddCount}</p>`;
+        }
+    </script>
+</body>
+</html>

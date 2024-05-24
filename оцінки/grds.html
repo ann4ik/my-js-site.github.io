@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рівень знань</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6bdd71; 
+        }
+        .container {
+            background: #37b0f7; 
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+        h1 {
+            color: white; 
+            text-align: center;
+        }
+        label, button {
+            color: white; 
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        button {
+            background-color: #004d00; 
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #002a00; 
+        }
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Рівень знань</h1>
+        <form id="gradeForm">
+            <label for="gradeInput">Введіть вашу оцінку від 1 до 12:</label><br>
+            <input type="number" id="gradeInput" name="grade" min="1" max="12" required><br>
+            <div style="text-align: center;">
+                <button type="submit">Перевірити</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('gradeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let grade = parseInt(document.getElementById('gradeInput').value);
+            let message = document.getElementById('message');
+
+            if (isNaN(grade) || grade < 1 || grade > 12) {
+                message.textContent = "Будь ласка, введіть коректну оцінку від 1 до 12.";
+                message.style.color = 'red';
+            } else {
+                let level;
+                if (grade >= 1 && grade <= 4) {
+                    level = "низький";
+                } else if (grade >= 5 && grade <= 8) {
+                    level = "середній";
+                } else if (grade >= 9 && grade <= 12) {
+                    level = "високий";
+                }
+                message.textContent = `Ваш рівень знань: ${level}`;
+                message.style.color = 'green';
+            }
+        });
+    </script>
+</body>
+</html>

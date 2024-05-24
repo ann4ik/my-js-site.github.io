@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #37b0f7; 
+        }
+        .container {
+            background: #6bdd71;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+        h1 {
+            color: white; 
+            text-align: center;
+        }
+        label, button {
+            color: white; 
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        button {
+            background-color: #004d00; 
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #002a00; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <form id="initialForm">
+            <label for="initialInput">Enter number 1-50:</label><br>
+            <input type="number" id="initialInput" name="initial" required style="width: 100%; padding: 8px; margin-top: 10px; margin-bottom: 20px;"><br>
+            <div style="text-align: center;">
+                <button type="submit">Start</button>
+            </div>
+        </form>
+        <form id="guessForm" style="display:none;">
+            <label for="guessInput">Enter number:</label><br>
+            <input type="number" id="guessInput" name="guess" required style="width: 100%; padding: 8px; margin-top: 10px; margin-bottom: 20px;"><br>
+            <div style="text-align: center;">
+                <button type="submit">Guess</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let answer;
+        document.getElementById('initialForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            answer = document.getElementById('initialInput').value;
+            document.getElementById('initialForm').style.display = 'none';
+            document.getElementById('guessForm').style.display = 'block';
+            document.getElementById('message').textContent = 'Now guess the number!';
+        });
+
+        document.getElementById('guessForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let guess = document.getElementById('guessInput').value;
+            let message = document.getElementById('message');
+
+            if (guess < answer) {
+                message.textContent = 'Bigger!';
+                message.style.color = 'orange';
+            } else if (guess > answer) {
+                message.textContent = 'Smaller!';
+                message.style.color = 'orange';
+            } else {
+                message.textContent = 'WIN!';
+                message.style.color = 'green';
+            }
+        });
+    </script>
+</body>
+</html>

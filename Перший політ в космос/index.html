@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космічна вікторина</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #37b0f7; 
+        }
+        .container {
+            background: #6bdd71; 
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: white; 
+            text-align: center;
+        }
+        label, button {
+            color: white; 
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #004d00; 
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #002a00; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Космічна вікторина</h1>
+        <form id="quizForm">
+            <label for="answerInput">Хто перший полетів в космос?</label><br>
+            <input type="text" id="answerInput" name="answer" required style="width: 100%; padding: 8px; margin-top: 10px; margin-bottom: 20px;"><br>
+            <div style="text-align: center;">
+                <button type="submit">Відповісти</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let answer = document.getElementById('answerInput').value.trim().toLowerCase();
+            let message = document.getElementById('message');
+
+            if (answer === "юрій гагарін" || answer === "yuri gagarin") {
+                message.textContent = "Правильно! Юрій Гагарін був першою людиною в космосі.";
+                message.style.color = 'green'; 
+            } else {
+                message.textContent = "Неправильно. Правильна відповідь: Юрій Гагарін.";
+                message.style.color = 'red'; 
+            }
+        });
+    </script>
+</body>
+</html>

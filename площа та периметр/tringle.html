@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area and Perimeter Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Area and Perimeter Calculator</h1>
+    
+    <h2>Triangle</h2>
+    <label>Side A: <input type="number" id="sideA"></label>
+    <label>Side B: <input type="number" id="sideB"></label>
+    <label>Side C: <input type="number" id="sideC"></label>
+    <button onclick="calculateTriangle()">Calculate</button>
+    <p id="triangleResult"></p>
+    
+    <h2>Rectangle</h2>
+    <label>Length: <input type="number" id="length"></label>
+    <label>Width: <input type="number" id="width"></label>
+    <button onclick="calculateRectangle()">Calculate</button>
+    <p id="rectangleResult"></p>
+
+    <script>
+        function calculateTriangle() {
+            const sideA = parseFloat(document.getElementById('sideA').value);
+            const sideB = parseFloat(document.getElementById('sideB').value);
+            const sideC = parseFloat(document.getElementById('sideC').value);
+
+            if (isNaN(sideA) || isNaN(sideB) || isNaN(sideC)) {
+                document.getElementById('triangleResult').textContent = 'Please enter numerical values.';
+                return;
+            }
+
+            const perimeter = sideA + sideB + sideC;
+            const semiPerimeter = perimeter / 2;
+            const area = Math.sqrt(semiPerimeter * (semiPerimeter - sideA) * (semiPerimeter - sideB) * (semiPerimeter - sideC));
+
+            document.getElementById('triangleResult').textContent = `Perimeter: ${perimeter}, Area: ${area.toFixed(2)}`;
+        }
+
+        function calculateRectangle() {
+            const length = parseFloat(document.getElementById('length').value);
+            const width = parseFloat(document.getElementById('width').value);
+
+            if (isNaN(length) || isNaN(width)) {
+                document.getElementById('rectangleResult').textContent = 'Please enter numerical values.';
+                return;
+            }
+
+            const perimeter = 2 * (length + width);
+            const area = length * width;
+
+            document.getElementById('rectangleResult').textContent = `Perimeter: ${perimeter}, Area: ${area.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

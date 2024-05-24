@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Числа в діапазоні</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6bdd71; 
+        }
+        .container {
+            background: #37b0f7; 
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+        h1 {
+            color: white; 
+            text-align: center;
+        }
+        label, button {
+            color: white;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        button {
+            background-color: #004d00; 
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #002a00; 
+        }
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Числа в діапазоні</h1>
+        <form id="rangeForm">
+            <label for="startInput">Введіть початок діапазону (число):</label><br>
+            <input type="number" id="startInput" name="start" required><br>
+            <label for="endInput">Введіть кінець діапазону (число):</label><br>
+            <input type="number" id="endInput" name="end" required><br>
+            <div style="text-align: center;">
+                <button type="submit">Показати числа</button>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('rangeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let start = parseInt(document.getElementById('startInput').value);
+            let end = parseInt(document.getElementById('endInput').value);
+            let message = document.getElementById('message');
+
+            if (isNaN(start) || isNaN(end)) {
+                message.textContent = "Будь ласка, введіть коректні числові значення.";
+                message.style.color = 'red';
+            } else {
+                let numbersInRange = [];
+                for (let i = start; i <= end; i++) {
+                    numbersInRange.push(i);
+                }
+                message.textContent = `Числа в діапазоні від ${start} до ${end}: ${numbersInRange.join(', ')}`;
+                message.style.color = 'black';
+            }
+        });
+    </script>
+</body>
+</html>

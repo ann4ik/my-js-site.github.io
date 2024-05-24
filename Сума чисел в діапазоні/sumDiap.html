@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Числа в діапазоні</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #37b0f7; /* Зміна фону на зелений */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #6bdd71; /* Зміна кольору фону форми на зелений */
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: white; /* Зміна кольору заголовку на білий */
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            color: white; /* Зміна кольору тексту міток на білий */
+        }
+        input[type="number"] {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #004d00; /* Зміна колір кнопки на зелений */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #002a00; /* Зміна кольору кнопки при наведенні на темно-зелений */
+        }
+        #numbers, #sum {
+            margin-top: 20px;
+            font-weight: bold;
+            color: white; /* Зміна кольору тексту результатів на білий */
+        }
+        #sum {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Числа в діапазоні</h1>
+        <form id="rangeForm">
+            <label for="startInput">Початок діапазону (число):</label>
+            <input type="number" id="startInput" name="start" required><br>
+            <label for="endInput">Кінець діапазону (число):</label>
+            <input type="number" id="endInput" name="end" required><br>
+            <button type="submit">Вивести</button>
+        </form>
+        <p id="numbers"></p>
+        <p id="sum"></p>
+    </div>
+
+    <script>
+        document.getElementById('rangeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let start = parseInt(document.getElementById('startInput').value);
+            let end = parseInt(document.getElementById('endInput').value);
+            let numbersElement = document.getElementById('numbers');
+            let sumElement = document.getElementById('sum');
+
+            if (isNaN(start) || isNaN(end)) {
+                numbersElement.textContent = "Будь ласка, введіть коректні числові значення.";
+                sumElement.textContent = "";
+                return;
+            }
+
+            let numbersInRange = [];
+            let sum = 0;
+            for (let i = start; i <= end; i++) {
+                numbersInRange.push(i);
+                sum += i;
+            }
+            numbersElement.textContent = `Числа в діапазоні від ${start} до ${end}: ${numbersInRange.join(', ')}`;
+            sumElement.textContent = `Сума чисел в діапазоні від ${start} до ${end} дорівнює ${sum}`;
+        });
+    </script>
+</body>
+</html>
